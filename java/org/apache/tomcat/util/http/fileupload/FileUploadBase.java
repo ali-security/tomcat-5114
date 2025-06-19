@@ -89,7 +89,7 @@ public abstract class FileUploadBase {
      * HTTP content type header for multiple uploads.
      */
     public static final String MULTIPART_MIXED = "multipart/mixed";
-
+    public static final int DEFAULT_PART_HEADER_SIZE_MAX = 512;
     // ----------------------------------------------------------- Data members
 
     /**
@@ -110,6 +110,10 @@ public abstract class FileUploadBase {
      */
     private long fileCountMax = -1;
 
+    /**
+     * The maximum permitted size of the headers provided with a single part in bytes.
+     */
+    private int partHeaderSizeMax = DEFAULT_PART_HEADER_SIZE_MAX;
     /**
      * The content encoding to use when reading part headers.
      */
@@ -227,7 +231,10 @@ public abstract class FileUploadBase {
     public void setHeaderEncoding(final String encoding) {
         headerEncoding = encoding;
     }
-
+    
+    public void setPartHeaderSizeMax(final int partHeaderSizeMax) {
+        this.partHeaderSizeMax = partHeaderSizeMax;
+    }
     // --------------------------------------------------------- Public methods
 
     /**
